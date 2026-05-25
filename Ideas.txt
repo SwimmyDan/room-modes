@@ -1,0 +1,104 @@
+The goal is to build a finished, presentable mini-project in 2–3 days: a “Room Modes & Eigenfrequencies Analyzer.” The target is not perfection. The target is working code, clean plots, understandable physics, and something you can show on GitHub and put on your CV.
+
+1.
+Start by creating a simple project structure:
+
+room_modes/
+│
+├── main.py
+├── modes.py
+├── visualization.py
+├── README.md
+└── requirements.txt
+
+Install the required libraries:
+
+	pip install numpy matplotlib
+
+2.
+Your first task is implementing the room mode calculation. Use the rectangular-room eigenfrequency formula. Write a function like:
+
+	calculate_modes(Lx, Ly, Lz, max_mode=5)
+
+Loop over combinations of (nx, ny, nz) from 0 to max_mode, skipping (0,0,0). For each mode, compute:
+
+a. frequency
+b. mode indices
+c. mode type (axial, tangential, oblique)
+
+Store them in dictionaries like:
+
+	{
+	   "freq": ...,
+    	   "mode": (nx, ny, nz),
+	   "type": ...
+	}
+
+Sort the modes by frequency and print the lowest few for debugging:
+
+	Mode (1,0,0) | 34.3 Hz | axial
+	Mode (0,1,0) | 45.1 Hz | axial
+
+
+3.
+Then create your first visualization. Plot the frequencies as vertical lines using plt.axvline(freq) so you get a resonance map of the room. 
+At this point, the project already exists. Do not optimize or redesign anything yet.
+
+4.
+Next, improve the visualization. Add different colors for axial, tangential, and oblique modes. 
+
+5.
+Then create a histogram or modal density plot showing how modes cluster across the frequency spectrum. This lets you discuss acoustically relevant effects 
+like uneven bass response and problematic low-frequency resonances.
+
+6.
+After that, add a simple mode-shape visualization. For a selected mode (nx, ny, nz), compute a 2D pressure distribution using:
+
+	p(x,y)=cos(nxπx/Lx) + cos(nyπy/Ly)
+
+Visualize it with plt.imshow() to show nodes and antinodes. Even one working visualization is enough to make the project much more impressive.
+
+7.
+Create an outputs/ folder and automatically save generated figures such as:
+
+	mode_distribution.png
+	mode_shape.png
+
+Then clean up the main script so the project is easy to run:
+
+	Lx = 5
+	Ly = 4
+	Lz = 2.8
+
+Running:
+
+	python main.py
+
+should generate the plots directly.
+
+8.
+Finally, write a clean README. Include:
+
+	what the project does
+	the basic theory
+	example images
+	how to run it
+	technologies used (Python, NumPy, Matplotlib)
+
+Add one short acoustics insight section, for example: “The simulation shows clustering of room modes at low frequencies, 
+which contributes to uneven bass response in small rectangular rooms.” Avoid overengineering. Do not build a GUI, real-time processing, FEM simulations, or advanced optimization. 
+Those things kill small projects before they finish.
+
+The real goal is demonstrating that you can:
+
+	implement mathematical models
+	structure code properly
+	visualize data
+	explain acoustical results
+
+If you finish this cleanly, you’ll have:
+
+	a GitHub project
+	several professional-looking plots
+	a strong CV bullet point
+	something meaningful to discuss in interviews for acoustics/DSP roles.
