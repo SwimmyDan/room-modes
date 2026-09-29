@@ -1,28 +1,56 @@
-import numpy as np
-import pandas as pd
-from pathlib import Path
-import matplotlib.pyplot as plt
-from modes import calculate_room_modes
+from modes import calculate_modes
+from visualization import make_resonance_plot, make_pressure_plot
+from export import save_modes_csv, save_modes_txt
 
 print("Modules imported.")
 
 if __name__ == "__main__":
     
-    Lx = 0.5
-    Ly = 1
-    Lz = 2
-    
+    # Room dimensions in meters
+    Lx = 8.2
+    Ly = 5.2
+    Lz = 3.1
+
+    # Calculation settings
+    max_mode = 10
+    max_f = 100
+
+    # Visualization settings
+    modes_plotted = 3
+    step_size = 0.5
+    pressure_factor = 2
+
     print(f"Room dimensions: Lx = {Lx}, Ly = {Ly}, Lz = {Lz}")
     
-    room_modes = calculate_room_modes(Lx,Ly,Lz, max_mode = 3)
-
+    # Calculate room modes
+    room_modes = calculate_modes(
+        Lx,Ly,Lz, 
+        max_mode=max_mode, 
+        max_f = max_f
+    )
     print("Room modes are")
     print(room_modes)
-    print("Output saved.")
-    
-    room_modes.to_csv( Path('outputs') / "modes.csv", index = False)
-    
-    with open( Path('outputs') / "modes.txt", "w" ) as f:
-        
-        f.write(room_modes.to_string(index=False))
-        
+
+    # Export results
+    save_modes_csv(room_modes)
+    save_modes_txt(room_modes, filename= 'modes.txt') 
+    #change to 'modes.md' for markdown
+
+    # Generate visualizations
+    make_resonance_plot(
+        room_modes, 
+        max_f,
+        Lx,Ly,Lz
+    )
+    print(
+        "Resonance plot generated at"
+        f"\"outputs\\{Lx}x{Ly}x{Lz}_resonance_plot.png\""
+    )
+
+    make_pressure_plot(
+        Lx, Ly, Lz, 
+        room_modes, 
+        modes_plotted, 
+        step_size, 
+        pressure_factor
+    )
