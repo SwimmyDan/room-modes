@@ -44,7 +44,7 @@ In the plot, the type of mode is distinguished. **Axial** modes involve standing
 Clone the repository and navigate into the project directory:
 
 ```bash
-git clone https://github.com/SwimmyDan/room_modes.git
+git clone https://github.com/SwimmyDan/room-modes.git
 cd room_modes
 ```
 
