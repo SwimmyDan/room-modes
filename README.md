@@ -9,9 +9,9 @@ Say you're 23, live in Berlin, and you're gussing up your living room for the bi
 For example: you have a mode at 50 Hz. The sound waves will tend to reflect repeatedly between parallel walls, constructively and destructively interfering and resulting in **standing waves**. These look like repeating regions of very high positive or negative acoustic pressure. In between the peaks and valley, there are regions of constant zero acoustic pressure. As a result, even taking one step may kill the frequencies close to 50 Hz entirely, and thus the party. In a rectangular room, these standing waves form potentially in every direction, meaning even sitting down could mean the bass disappears. Counting the number of "dead spots" from wall to wall in the x-direction gives you $n_x$, similarly, you get $n_y$ and $n_z$. We then say there is a $(n_x, n_y, n_z)$-mode at 50 Hz. A (1,1,0)-mode would mean along both sets of side walls you encounter a region of zero acoustic pressure, the sound is loudest in the corners, and moving your head vertically doesn't sound different.
 
 If you know $(n_x, n_y, n_z)$ and the room's dimensions $L_x,L_y$ and $L_z$ (and the speed of sound $c$ in m/s), you can calculate the frequency associated to it:
-$$
+```math
 f = \frac{c}{2}\sqrt{\Big(\frac{n_x}{L_x}\Big)^2+\Big(\frac{n_y}{L_y}\Big)^2+\Big(\frac{n_z}{L_z}\Big)^2}
-$$
+```
 We call $f$ an **eigenfrequency**. For example: a room with dimensions 8.2 x 5.2 x 3.1 meters has a (1,1,0)-mode with eigenfrequency of about 39 Hz. Its sound pressure distribution would look like this
 
 <p align="center">
@@ -27,12 +27,12 @@ Another example:
 </p>
 
 The formula used to generate the 3d-plots is
-$$
+```math
 \underline{p}_{n_xn_yn_z}(x,y,z) = \underline{\hat{p}}\cos{\Big(\frac{n_x\pi}{L_x}x\Big)}\cos{\Big(\frac{n_y\pi}{L_y}y\Big)} \cos{\Big(\frac{n_z\pi}{L_z}z\Big)}
-$$
+```
 where $x,y,z$ represent the coordinate position in the room and $\underline{\hat{p}}$ the complex amplitude (For illustration purposes, the amplitude is ignored. Roughly speaking, a higher absolute value would mean a louder tone.)
 
-The above examples are just two of many modes found in your hypothetical living room. Along with the above plots, the code also generates a stem plot
+The above examples are just two of many modes found in your hypothetical living room. Along with the above plots, the code also generates a stem plot:
 
 <p align="center">
     <img src="examples/8.2x5.2x3.1_resonance_plot.png" alt="resonance plot" width="1000">
