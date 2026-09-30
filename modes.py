@@ -1,8 +1,6 @@
 import numpy as np
-import pandas as pd
 
-
-def calculate_modes(Lx,Ly,Lz, max_mode=10, max_f = -1):
+def calculate_modes(Lx,Ly,Lz, max_mode=10, max_f = -1, c=343):
     """
     TODO:
         - clean up comments and add some link for the formula
@@ -22,6 +20,8 @@ def calculate_modes(Lx,Ly,Lz, max_mode=10, max_f = -1):
         optional maximal mode order to be iterated over
     max_f : float
         optional maximal frequency 
+    c : float
+        speed of sound
 
     Returns
     -------
@@ -50,7 +50,6 @@ def calculate_modes(Lx,Ly,Lz, max_mode=10, max_f = -1):
             raise ValueError("Maximum frequency must be a positive number or -1")
     
     # ------------------- initialization ------------------- 
-    c = 343 # sound speed
     modes_list = []
     mode_types_list = ["oblique", "tangential", "axial"]
 

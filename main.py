@@ -2,8 +2,6 @@ from modes import calculate_modes
 from visualization import make_resonance_plot, make_pressure_plot
 from export import save_modes_csv, save_modes_txt
 
-print("Modules imported.")
-
 if __name__ == "__main__":
     
     # Room dimensions in meters
@@ -13,7 +11,8 @@ if __name__ == "__main__":
 
     # Calculation settings
     max_mode = 10
-    max_f = 100
+    max_f = 200
+    c = 343 #speed of sound in m/s
 
     # Visualization settings
     modes_plotted = 3
@@ -26,15 +25,21 @@ if __name__ == "__main__":
     room_modes = calculate_modes(
         Lx,Ly,Lz, 
         max_mode=max_mode, 
-        max_f = max_f
+        max_f = max_f,
+        c = c
     )
-    print("Room modes are")
-    print(room_modes)
 
     # Export results
     save_modes_csv(room_modes)
     save_modes_txt(room_modes, filename= 'modes.txt') 
     #change to 'modes.md' for markdown
+
+    print(
+        "Tables generated at "
+        "\"outputs\\modes.txt\" "
+        "and "
+        "\"outputs\\modes.csv\""
+    )
 
     # Generate visualizations
     make_resonance_plot(
@@ -43,7 +48,7 @@ if __name__ == "__main__":
         Lx,Ly,Lz
     )
     print(
-        "Resonance plot generated at"
+        "Resonance plot generated at "
         f"\"outputs\\{Lx}x{Ly}x{Lz}_resonance_plot.png\""
     )
 

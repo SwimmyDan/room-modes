@@ -61,7 +61,7 @@ def make_resonance_plot(room_modes, max_f, Lx,Ly,Lz):
     # -------------------- Title, Legend --------------------
     if max_f == -1:
         max_f = room_modes['frequency'][-1]
-    ax.set_title(f'Room modes up to {max_f} in Hz')
+    ax.set_title(f'Room modes up to {max_f} Hz')
     ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.1), ncol=3, frameon = False)
 
 
@@ -306,7 +306,7 @@ def make_pressure_plot(Lx, Ly, Lz, room_modes, modes_plotted, step_size = 0.5, p
             title_str,
             ha="center",
             va="bottom",
-            fontsize = 18
+            fontsize = 16
         )
 
         plt.savefig(
@@ -316,6 +316,6 @@ def make_pressure_plot(Lx, Ly, Lz, room_modes, modes_plotted, step_size = 0.5, p
         )
 
         print(
-            "Pressure plot generated at"
-            f"\"outputs\\{Lx}x{Ly}x{Lz}_pressure_plot_{f}_Hz{i}.png\"."
+            "Pressure plot generated at "
+            f"\"outputs\\{Lx}x{Ly}x{Lz}_pressure_plot_{f}_Hz_{i}.png\"."
         )
